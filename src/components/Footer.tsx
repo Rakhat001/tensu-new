@@ -2,6 +2,7 @@
 
 import { MessageCircle } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLanguage } from '@/lib/LanguageContext';
 
 export function Footer() {
@@ -95,11 +96,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="space-y-6 md:col-span-1">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center font-black text-white text-xl">
-                T
-              </div>
-              <span className="text-xl font-bold text-white tracking-tight">Tensu</span>
+            <Link href="/" className="inline-block transition-transform hover:scale-105">
+              <Image src="/tensu-logo.png" alt="Tensu" width={240} height={80} className="h-14 sm:h-16 w-auto object-contain brightness-0 invert" />
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed">
               {t.description}

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "@/lib/LanguageContext";
 import { useState, useEffect } from "react";
@@ -72,10 +73,7 @@ export function Navigation() {
           
           {/* Logo */}
           <Link href="/" className="flex items-center group relative z-10 transition-transform hover:scale-105">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center font-black text-white text-xl shadow-lg shadow-primary/30">
-              T
-            </div>
-            <span className="text-xl font-bold text-white tracking-tight ml-2">Tensu</span>
+            <Image src="/tensu-logo.png" alt="Tensu" width={240} height={80} className="h-14 sm:h-16 w-auto object-contain brightness-0 invert" priority />
           </Link>
 
           {/* Desktop Navigation Pills */}
