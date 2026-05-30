@@ -3,6 +3,7 @@
 import { Navigation } from "@/components/Navigation";
 import { ArrowRight, Users, Calendar, AlertTriangle, MessageCircle, BarChart3, CheckCircle, CreditCard, ChevronRight, Play, Star, Smartphone, Zap, Globe, Shield, TrendingUp, Rocket, UserPlus, Wrench, HelpCircle } from "lucide-react";
 import { DesktopMockup } from "@/components/DesktopMockup";
+import { MobileMockup } from "@/components/MobileMockup";
 import { FeaturesTabs } from "@/components/FeaturesTabs";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { Footer } from "@/components/Footer";
@@ -88,11 +89,11 @@ export default function Home() {
                   <div className="absolute top-0 right-0 w-48 h-48 bg-primary/20 rounded-full blur-3xl animate-pulse-slow" />
                   <div className="absolute bottom-0 left-0 w-64 h-64 bg-violet-500/20 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }} />
                 </div>
-                <div className="relative z-10 w-48 sm:w-56 origin-bottom scale-[0.85] sm:scale-100 transition-transform duration-700 hover:-translate-y-2">
-                  <Image src="/screenshots/students-main.png" alt="Tensu Students App" width={300} height={600} className="w-full h-auto drop-shadow-2xl rounded-t-[2rem]" />
+                <div className="relative z-10 w-52 sm:w-60 origin-bottom scale-[0.85] sm:scale-100 transition-transform duration-700 hover:-translate-y-2 translate-y-8">
+                  <MobileMockup src="/screenshots/students-main.png" alt="Tensu Students App" />
                 </div>
-                <div className="relative z-10 w-48 sm:w-56 origin-bottom scale-[0.85] sm:scale-100 hidden sm:block transition-transform duration-700 hover:-translate-y-2 translate-y-10">
-                  <Image src="/screenshots/staff-main.png" alt="Tensu Business App" width={300} height={600} className="w-full h-auto drop-shadow-2xl rounded-t-[2rem]" />
+                <div className="relative z-10 w-52 sm:w-60 origin-bottom scale-[0.85] sm:scale-100 hidden sm:block transition-transform duration-700 hover:-translate-y-2 translate-y-16">
+                  <MobileMockup src="/screenshots/staff-main.png" alt="Tensu Business App" />
                 </div>
               </div>
             </div>
