@@ -26,7 +26,7 @@ export function Navigation() {
       pricing: "Тарифы",
       security: "Безопасность",
       contact: "Контакты",
-      login: "Войти",
+      demo: "Запросить демо",
     },
     en: {
       students: "Students",
@@ -35,7 +35,7 @@ export function Navigation() {
       pricing: "Pricing",
       security: "Security",
       contact: "Contact",
-      login: "Log in",
+      demo: "Request Demo",
     },
     kk: {
       students: "Оқушылар",
@@ -44,7 +44,7 @@ export function Navigation() {
       pricing: "Тарифтер",
       security: "Қауіпсіздік",
       contact: "Байланыс",
-      login: "Кіру",
+      demo: "Демо сұрау",
     }
   };
 
@@ -117,9 +117,9 @@ export function Navigation() {
               ))}
             </div>
 
-            <button className="bg-primary hover:bg-[#1E3A8A] text-white rounded-full shadow-lg shadow-primary/20 transition-all duration-300 px-6 py-2.5 font-bold uppercase tracking-wider text-xs">
-              {t.login}
-            </button>
+            <Link href="#demo" className="bg-primary hover:bg-[#1E3A8A] text-white rounded-full shadow-lg shadow-primary/20 transition-all duration-300 px-6 py-2.5 font-bold uppercase tracking-wider text-xs flex items-center justify-center">
+              {t.demo}
+            </Link>
           </div>
 
           {/* Mobile Actions */}
@@ -176,9 +176,9 @@ export function Navigation() {
           </div>
 
           <div className="pt-4 border-t border-border">
-            <button className="w-full flex items-center justify-center bg-primary hover:bg-[#1E3A8A] text-white rounded-xl h-12 shadow-lg shadow-primary/20 font-bold uppercase tracking-wider">
-              {t.login}
-            </button>
+            <Link href="#demo" onClick={() => setIsMobileMenuOpen(false)} className="w-full flex items-center justify-center bg-primary hover:bg-[#1E3A8A] text-white rounded-xl h-12 shadow-lg shadow-primary/20 font-bold uppercase tracking-wider text-sm">
+              {t.demo}
+            </Link>
           </div>
         </div>
       </div>
