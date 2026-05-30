@@ -82,8 +82,8 @@ export function Footer() {
   ];
 
   const legalLinks = [
-    { label: t.links.privacy, path: '#' },
-    { label: t.links.terms, path: '#' },
+    { label: t.links.privacy, path: '/privacy' },
+    { label: t.links.terms, path: '/terms' },
     { label: t.links.security, path: '/security' },
   ];
 

@@ -2,32 +2,90 @@
 
 import { useState } from "react";
 import { QrCode, Calendar, CreditCard, Flame, Trophy, MessageCircle, Users, BarChart3, CheckCircle } from "lucide-react";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export function FeaturesTabs() {
   const [activeTab, setActiveTab] = useState<"students" | "staff">("students");
+  const { language } = useLanguage();
 
-  const studentsFeatures = [
-    { icon: QrCode, title: 'QR-вход', description: 'Быстрый доступ на тренировки в одно сканирование. Без очередей, без бумаг.', color: 'var(--glow-primary)' },
-    { icon: Calendar, title: 'Удобное расписание', description: 'Просматривайте тренировки в виде списка или календаря с умными фильтрами.', color: 'var(--glow-secondary)' },
-    { icon: CreditCard, title: 'Покупка абонемента', description: 'Безопасная оплата картой в один клик напрямую в Telegram.', color: 'var(--glow-primary)' },
-    { icon: Flame, title: 'Серии и достижения', description: 'Геймификация: серии, уровни, достижения и рейтинг клуба.', color: 'rgba(249, 115, 22, 0.4)' },
-    { icon: Trophy, title: 'Мой прогресс', description: 'Отслеживайте каждую тренировку, серии занятий и достижения.', color: 'var(--glow-secondary)' },
-    { icon: MessageCircle, title: 'Индивидуальные цены', description: 'Возможность предложить свою цену при наличии веских причин.', color: 'var(--glow-primary)' },
-  ];
+  const translations = {
+    ru: {
+      tabs: {
+        students: "Для Учеников",
+        staff: "Для Управляющих"
+      },
+      studentsTitle: { text: "Цифровой опыт ученика", accent: "нового поколения" },
+      staffTitle: { text: "Мощные инструменты", accent: "автоматизации клуба" },
+      studentsFeatures: [
+        { icon: QrCode, title: 'QR-вход', description: 'Быстрый доступ на тренировки в одно сканирование. Без очередей, без бумаг.', color: 'var(--glow-primary)' },
+        { icon: Calendar, title: 'Удобное расписание', description: 'Просматривайте тренировки в виде списка или календаря с умными фильтрами.', color: 'var(--glow-secondary)' },
+        { icon: CreditCard, title: 'Покупка абонемента', description: 'Безопасная оплата картой в один клик напрямую в Telegram.', color: 'var(--glow-primary)' },
+        { icon: Flame, title: 'Серии и достижения', description: 'Геймификация: серии, уровни, достижения и рейтинг клуба.', color: 'rgba(249, 115, 22, 0.4)' },
+        { icon: Trophy, title: 'Мой прогресс', description: 'Отслеживайте каждую тренировку, серии занятий и достижения.', color: 'var(--glow-secondary)' },
+        { icon: MessageCircle, title: 'Индивидуальные цены', description: 'Возможность предложить свою цену при наличии веских причин.', color: 'var(--glow-primary)' },
+      ],
+      staffFeatures: [
+        { icon: Users, title: 'Контроль студентов', description: 'Полная база с посещаемостью, заметками и статусами абонементов.', color: 'var(--glow-primary)' },
+        { icon: BarChart3, title: 'CRM и выручка', description: 'Динамика оплат, очередь продаж и аналитика за любой период.', color: 'var(--glow-secondary)' },
+        { icon: Calendar, title: 'Умное расписание', description: 'Планируйте занятия, привязывайте тренеров, отслеживайте заполняемость.', color: 'var(--glow-primary)' },
+        { icon: CreditCard, title: 'Управление тарифами', description: 'Гибкие дни заморозки, скидки и стоимость в любой валюте.', color: 'var(--glow-secondary)' },
+        { icon: Users, title: 'Тренеры и зарплата', description: 'Калькулятор зарплаты тренера с учётом ставки, занятий и % от выручки.', color: 'rgba(249, 115, 22, 0.4)' },
+        { icon: CheckCircle, title: 'Роли и сотрудники', description: 'Разграничение прав: владелец, администратор, тренер.', color: 'var(--glow-primary)' },
+      ]
+    },
+    en: {
+      tabs: {
+        students: "For Students",
+        staff: "For Managers"
+      },
+      studentsTitle: { text: "Next Generation", accent: "Digital Student Experience" },
+      staffTitle: { text: "Powerful Tools for", accent: "Club Automation" },
+      studentsFeatures: [
+        { icon: QrCode, title: 'QR Entry', description: 'Fast access to workouts with one scan. No queues, no paper.', color: 'var(--glow-primary)' },
+        { icon: Calendar, title: 'Convenient Schedule', description: 'View workouts as a list or calendar with smart filters.', color: 'var(--glow-secondary)' },
+        { icon: CreditCard, title: 'Buy Membership', description: 'Secure card payment in one click directly in Telegram.', color: 'var(--glow-primary)' },
+        { icon: Flame, title: 'Streaks & Achievements', description: 'Gamification: streaks, levels, achievements and club ranking.', color: 'rgba(249, 115, 22, 0.4)' },
+        { icon: Trophy, title: 'My Progress', description: 'Track every workout, activity streaks, and achievements.', color: 'var(--glow-secondary)' },
+        { icon: MessageCircle, title: 'Custom Prices', description: 'Ability to propose your own price with valid reasons.', color: 'var(--glow-primary)' },
+      ],
+      staffFeatures: [
+        { icon: Users, title: 'Student Control', description: 'Complete database with attendance, notes, and membership statuses.', color: 'var(--glow-primary)' },
+        { icon: BarChart3, title: 'CRM & Revenue', description: 'Payment dynamics, sales pipeline, and analytics for any period.', color: 'var(--glow-secondary)' },
+        { icon: Calendar, title: 'Smart Schedule', description: 'Plan classes, assign trainers, and track occupancy.', color: 'var(--glow-primary)' },
+        { icon: CreditCard, title: 'Tariff Management', description: 'Flexible freeze days, discounts, and pricing in any currency.', color: 'var(--glow-secondary)' },
+        { icon: Users, title: 'Trainers & Payroll', description: 'Trainer salary calculator based on rate, classes, and % of revenue.', color: 'rgba(249, 115, 22, 0.4)' },
+        { icon: CheckCircle, title: 'Roles & Staff', description: 'Access control: owner, administrator, trainer.', color: 'var(--glow-primary)' },
+      ]
+    },
+    kk: {
+      tabs: {
+        students: "Оқушылар үшін",
+        staff: "Басқарушылар үшін"
+      },
+      studentsTitle: { text: "Жаңа буынның", accent: "сандық оқушы тәжірибесі" },
+      staffTitle: { text: "Клубты автоматтандыруға арналған", accent: "қуатты құралдар" },
+      studentsFeatures: [
+        { icon: QrCode, title: 'QR-кіру', description: 'Бір рет сканерлеу арқылы жаттығуларға жылдам кіру. Кезексіз, қағазсыз.', color: 'var(--glow-primary)' },
+        { icon: Calendar, title: 'Ыңғайлы кесте', description: 'Ақылды сүзгілері бар тізім немесе күнтізбе түрінде жаттығуларды қараңыз.', color: 'var(--glow-secondary)' },
+        { icon: CreditCard, title: 'Жазылым сатып алу', description: 'Тікелей Telegram-да бір рет басу арқылы қауіпсіз картамен төлеу.', color: 'var(--glow-primary)' },
+        { icon: Flame, title: 'Сериялар мен жетістіктер', description: 'Геймификация: сериялар, деңгейлер, жетістіктер және клуб рейтингі.', color: 'rgba(249, 115, 22, 0.4)' },
+        { icon: Trophy, title: 'Менің прогресім', description: 'Әр жаттығуды, сабақтар сериясын және жетістіктерді қадағалаңыз.', color: 'var(--glow-secondary)' },
+        { icon: MessageCircle, title: 'Жеке бағалар', description: 'Дәлелді себептермен өз бағаңызды ұсыну мүмкіндігі.', color: 'var(--glow-primary)' },
+      ],
+      staffFeatures: [
+        { icon: Users, title: 'Студенттерді бақылау', description: 'Қатысу, ескертпелер және жазылым күйлері бар толық база.', color: 'var(--glow-primary)' },
+        { icon: BarChart3, title: 'CRM және кіріс', description: 'Кез келген кезеңдегі төлем динамикасы, сату кезегі және аналитика.', color: 'var(--glow-secondary)' },
+        { icon: Calendar, title: 'Ақылды кесте', description: 'Сабақтарды жоспарлаңыз, жаттықтырушыларды бекітіңіз, толымдылықты бақылаңыз.', color: 'var(--glow-primary)' },
+        { icon: CreditCard, title: 'Тарифтерді басқару', description: 'Кез келген валютадағы икемді мұздату күндері, жеңілдіктер және баға.', color: 'var(--glow-secondary)' },
+        { icon: Users, title: 'Жаттықтырушылар және жалақы', description: 'Ставка, сабақтар және түсімнің % ескере отырып жалақы калькуляторы.', color: 'rgba(249, 115, 22, 0.4)' },
+        { icon: CheckCircle, title: 'Рөлдер және қызметкерлер', description: 'Құқықтарды бөлу: иесі, әкімші, жаттықтырушы.', color: 'var(--glow-primary)' },
+      ]
+    }
+  };
 
-  const staffFeatures = [
-    { icon: Users, title: 'Контроль студентов', description: 'Полная база с посещаемостью, заметками и статусами абонементов.', color: 'var(--glow-primary)' },
-    { icon: BarChart3, title: 'CRM и выручка', description: 'Динамика оплат, очередь продаж и аналитика за любой период.', color: 'var(--glow-secondary)' },
-    { icon: Calendar, title: 'Умное расписание', description: 'Планируйте занятия, привязывайте тренеров, отслеживайте заполняемость.', color: 'var(--glow-primary)' },
-    { icon: CreditCard, title: 'Управление тарифами', description: 'Гибкие дни заморозки, скидки и стоимость в любой валюте.', color: 'var(--glow-secondary)' },
-    { icon: Users, title: 'Тренеры и зарплата', description: 'Калькулятор зарплаты тренера с учётом ставки, занятий и % от выручки.', color: 'rgba(249, 115, 22, 0.4)' },
-    { icon: CheckCircle, title: 'Роли и сотрудники', description: 'Разграничение прав: владелец, администратор, тренер.', color: 'var(--glow-primary)' },
-  ];
-
-  const activeFeatures = activeTab === "students" ? studentsFeatures : staffFeatures;
-  const activeTitle = activeTab === "students" 
-    ? { text: "Цифровой опыт ученика", accent: "нового поколения" }
-    : { text: "Мощные инструменты", accent: "автоматизации клуба" };
+  const t = translations[language];
+  const activeFeatures = activeTab === "students" ? t.studentsFeatures : t.staffFeatures;
+  const activeTitle = activeTab === "students" ? t.studentsTitle : t.staffTitle;
 
   return (
     <div className="w-full">
@@ -42,7 +100,7 @@ export function FeaturesTabs() {
                 : "text-muted-foreground hover:text-white"
             }`}
           >
-            Для Учеников
+            {t.tabs.students}
           </button>
           <button
             onClick={() => setActiveTab("staff")}
@@ -52,7 +110,7 @@ export function FeaturesTabs() {
                 : "text-muted-foreground hover:text-white"
             }`}
           >
-            Для Управляющих
+            {t.tabs.staff}
           </button>
         </div>
       </div>

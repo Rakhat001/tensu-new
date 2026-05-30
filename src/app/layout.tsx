@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" className="dark">
-      <body className={`${inter.variable} ${jakarta.variable} antialiased bg-background text-foreground`}>
+      <body className={`${inter.variable} ${jakarta.variable} antialiased bg-background text-foreground overflow-x-hidden min-h-screen relative`}>
         <LanguageProvider>
           {children}
         </LanguageProvider>

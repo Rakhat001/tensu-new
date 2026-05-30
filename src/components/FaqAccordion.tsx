@@ -2,21 +2,41 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-
-const faqItems = [
-  { question: 'Сколько времени занимает внедрение Tensu?', answer: 'Базовая настройка занимает 1-2 рабочих дня. Вы сможете создать клуб, добавить секции и тарифы, пригласить персонал. Полная миграция данных может занять до недели.' },
-  { question: 'Какова стоимость платформы?', answer: 'Стоимость зависит от модели: фиксированная плата за клуб или оплата за активных учеников. Подробности на странице Тарифы. Мы предлагаем демо-период.' },
-  { question: 'Как работает оплата абонементов?', answer: 'Ученики оплачивают абонементы через бота картой. Мы используем защищённые платёжные шлюзы. Средства поступают на счёт клуба за вычетом комиссии.' },
-  { question: 'Какие роли доступны в Tensu Business?', answer: 'Три роли: владелец (полный доступ), администратор (управление клубом без финансов), тренер (просмотр своих групп). Права настраиваются владельцем.' },
-  { question: 'Как получить поддержку?', answer: 'Напишите нам в Telegram. Мы отвечаем в течение нескольких часов в рабочее время.' },
-];
+import { useLanguage } from "@/lib/LanguageContext";
 
 export function FaqAccordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { language } = useLanguage();
 
   const toggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+
+  const translations = {
+    ru: [
+      { question: 'Сколько времени занимает внедрение Tensu?', answer: 'Базовая настройка занимает 1-2 рабочих дня. Вы сможете создать клуб, добавить секции и тарифы, пригласить персонал. Полная миграция данных может занять до недели.' },
+      { question: 'Какова стоимость платформы?', answer: 'Стоимость зависит от модели: фиксированная плата за клуб или оплата за активных учеников. Подробности на странице Тарифы. Мы предлагаем демо-период.' },
+      { question: 'Как работает оплата абонементов?', answer: 'Ученики оплачивают абонементы через бота картой. Мы используем защищённые платёжные шлюзы. Средства поступают на счёт клуба за вычетом комиссии.' },
+      { question: 'Какие роли доступны в Tensu Business?', answer: 'Три роли: владелец (полный доступ), администратор (управление клубом без финансов), тренер (просмотр своих групп). Права настраиваются владельцем.' },
+      { question: 'Как получить поддержку?', answer: 'Напишите нам в Telegram. Мы отвечаем в течение нескольких часов в рабочее время.' },
+    ],
+    en: [
+      { question: 'How long does Tensu implementation take?', answer: 'Basic setup takes 1-2 business days. You can create a club, add sections and pricing, invite staff. Full data migration can take up to a week.' },
+      { question: 'What is the platform cost?', answer: 'Cost depends on the model: fixed fee per club or payment per active student. Details on the Pricing page. We offer a demo period.' },
+      { question: 'How do membership payments work?', answer: 'Students pay for memberships through the bot by card. We use secure payment gateways. Funds go to the club account minus commission.' },
+      { question: 'What roles are available in Tensu Business?', answer: 'Three roles: owner (full access), admin (club management without finances), trainer (view own groups). Permissions are set by the owner.' },
+      { question: 'How to get support?', answer: 'Message us on Telegram. We respond within a few hours during business hours.' },
+    ],
+    kk: [
+      { question: 'Tensu енгізу қанша уақыт алады?', answer: 'Негізгі баптау 1-2 жұмыс күнін алады. Сіз клуб жасай аласыз, секциялар мен тарифтерді қоса аласыз, қызметкерлерді шақыра аласыз. Толық деректерді көшіру бір аптаға дейін созылуы мүмкін.' },
+      { question: 'Платформа құны қанша?', answer: 'Құн үлгіге байланысты: клуб үшін тіркелген төлем немесе белсенді студент үшін төлем. Егжей-тегжейлі Тарифтер бетінде. Демо кезеңін ұсынамыз.' },
+      { question: 'Жазылым төлемдері қалай жұмыс істейді?', answer: 'Оқушылар жазылымдар үшін бот арқылы картамен төлейді. Біз қауіпсіз төлем шлюздарын қолданамыз. Қаражат комиссияны алып тастағаннан кейін клуб шотына түседі.' },
+      { question: 'Tensu Business-та қандай рөлдер қол жетімді?', answer: 'Үш рөл: иесі (толық қол жеткізу), әкімші (қаржысыз басқару), жаттықтырушы (өз топтарын қарау). Рұқсаттарды иесі орнатады.' },
+      { question: 'Қолдауды қалай алуға болады?', answer: 'Telegram арқылы бізге жазыңыз. Жұмыс уақытында бірнеше сағат ішінде жауап береміз.' },
+    ]
+  };
+
+  const faqItems = translations[language] || translations.ru;
 
   return (
     <div className="w-full space-y-3">
