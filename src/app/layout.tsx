@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className="dark">
+    <html lang="ru">
       <body className={`${inter.variable} ${jakarta.variable} antialiased bg-background text-foreground overflow-x-hidden min-h-screen relative`}>
         <LanguageProvider>
           {children}

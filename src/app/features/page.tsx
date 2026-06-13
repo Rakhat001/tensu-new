@@ -94,41 +94,42 @@ export default function FeaturesPage() {
     }
   };
 
-  const t = translations[language];
+  const t = translations[language] || translations.ru;
   const filteredFeatures = t.features.filter((f) => filter === 'all' || f.type === filter || f.type === 'both');
 
   return (
-    <main className="min-h-screen bg-background relative selection:bg-primary/30 selection:text-primary-50">
+    <main className="min-h-screen bg-white relative selection:bg-blue-100 selection:text-blue-800">
       <Navigation />
 
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-primary/20 blur-[150px] rounded-full pointer-events-none" />
+      {/* Hero background blobs */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-gradient-to-br from-blue-50/80 to-violet-50/80 blur-[120px] rounded-full pointer-events-none" />
 
       <section className="pt-32 lg:pt-48 pb-24 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 bg-primary/10 backdrop-blur-md text-xs font-bold uppercase tracking-widest text-primary shadow-sm mx-auto">
-              <Sparkles className="w-4 h-4" />
+            <div className="tensu-badge-blue inline-flex items-center gap-2 mx-auto">
+              <Sparkles className="w-3.5 h-3.5" />
               {t.badge}
             </div>
             
-            <h1 className="text-5xl lg:text-7xl font-black text-foreground tracking-tight leading-[1.1]">
+            <h1 className="text-5xl lg:text-7xl font-black text-gray-900 tracking-tight leading-[1.05]">
               {t.title} <br/>
               <span className="text-gradient-blue-purple">Tensu</span>
             </h1>
-            <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+            <p className="text-lg lg:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto">
               {t.subtitle}
             </p>
           </div>
 
           <div className="flex justify-center mb-16">
-            <div className="inline-flex items-center p-1.5 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md">
+            <div className="inline-flex items-center p-1.5 bg-gray-50 border border-gray-100 rounded-2xl shadow-sm">
               <button
                 onClick={() => setFilter('all')}
                 className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${
                   filter === 'all'
-                    ? 'bg-gradient-to-r from-primary to-violet-600 text-white shadow-lg'
-                    : 'text-muted-foreground hover:text-white hover:bg-white/5'
+                    ? 'bg-white text-gray-900 shadow-sm border border-gray-200'
+                    : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
                 }`}
               >
                 {t.filters.all}
@@ -137,8 +138,8 @@ export default function FeaturesPage() {
                 onClick={() => setFilter('students')}
                 className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${
                   filter === 'students'
-                    ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg'
-                    : 'text-muted-foreground hover:text-white hover:bg-white/5'
+                    ? 'bg-blue-600 text-white shadow-md shadow-blue-200'
+                    : 'text-gray-500 hover:text-blue-600 hover:bg-blue-50'
                 }`}
               >
                 {t.filters.students}
@@ -147,8 +148,8 @@ export default function FeaturesPage() {
                 onClick={() => setFilter('staff')}
                 className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${
                   filter === 'staff'
-                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
-                    : 'text-muted-foreground hover:text-white hover:bg-white/5'
+                    ? 'bg-violet-600 text-white shadow-md shadow-violet-200'
+                    : 'text-gray-500 hover:text-violet-600 hover:bg-violet-50'
                 }`}
               >
                 {t.filters.staff}
@@ -164,35 +165,34 @@ export default function FeaturesPage() {
               return (
                 <div 
                   key={`${feature.title}-${index}`}
-                  className={`tensu-card p-6 sm:p-8 flex flex-col group transition-all duration-300 hover:-translate-y-1 animate-fade-in ${
-                    isStudents ? 'hover:border-cyan-500/30 hover:shadow-[0_0_30px_rgba(6,182,212,0.1)]' : 
-                    isStaff ? 'hover:border-purple-500/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.1)]' : 
-                    'hover:border-primary/30 hover:shadow-[0_0_30px_rgba(37,99,235,0.1)]'
-                  }`}
-                  style={{ animationDelay: `${index * 50}ms`, animationFillMode: 'both' }}
+                  className="tensu-card p-6 sm:p-8 flex flex-col group transition-all duration-300 hover:-translate-y-1.5 cursor-default"
                 >
                   <div className="flex justify-between items-start mb-6">
-                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center border shadow-inner transition-colors ${
-                      isStudents ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400 group-hover:bg-cyan-500/20' : 
-                      isStaff ? 'bg-purple-500/10 border-purple-500/20 text-purple-400 group-hover:bg-purple-500/20' : 
-                      'bg-primary/10 border-primary/20 text-primary group-hover:bg-primary/20'
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center border transition-transform group-hover:scale-110 ${
+                      isStudents ? 'bg-blue-50 border-blue-100 text-blue-600' : 
+                      isStaff ? 'bg-violet-50 border-violet-100 text-violet-600' : 
+                      'bg-gray-50 border-gray-100 text-gray-600'
                     }`}>
                       <feature.icon className="w-6 h-6" />
                     </div>
                     
                     <div className={`px-2.5 py-1 rounded-full text-[9px] font-extrabold uppercase tracking-widest border ${
-                      isStudents ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400' : 
-                      isStaff ? 'bg-purple-500/10 border-purple-500/20 text-purple-400' : 
-                      'bg-white/5 border-white/10 text-muted-foreground'
+                      isStudents ? 'bg-blue-50 border-blue-100 text-blue-600' : 
+                      isStaff ? 'bg-violet-50 border-violet-100 text-violet-600' : 
+                      'bg-gray-50 border-gray-200 text-gray-500'
                     }`}>
                       {isStudents ? t.types.students : isStaff ? t.types.staff : t.types.both}
                     </div>
                   </div>
                   
-                  <h3 className="text-xl font-bold text-foreground mb-3 tracking-tight group-hover:text-white transition-colors">
+                  <h3 className={`text-xl font-bold mb-3 tracking-tight transition-colors ${
+                    isStudents ? 'text-gray-900 group-hover:text-blue-600' :
+                    isStaff ? 'text-gray-900 group-hover:text-violet-600' :
+                    'text-gray-900 group-hover:text-gray-700'
+                  }`}>
                     {feature.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-sm text-gray-500 leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
@@ -201,7 +201,7 @@ export default function FeaturesPage() {
           </div>
 
           {filteredFeatures.length === 0 && (
-            <div className="text-center py-20 text-muted-foreground">
+            <div className="text-center py-20 text-gray-500">
               {t.empty}
             </div>
           )}

@@ -44,25 +44,35 @@ export function FaqAccordion() {
         const isOpen = openIndex === i;
         
         return (
-          <div 
-            key={i} 
-            className={`tensu-card overflow-hidden transition-all duration-300 ${isOpen ? 'border-primary/30 shadow-[0_4px_20px_var(--glow-primary)] bg-white/10' : 'hover:border-white/20'}`}
+          <div
+            key={i}
+            className={`tensu-card overflow-hidden transition-all duration-300 ${
+              isOpen
+                ? 'border-blue-200 shadow-[0_4px_24px_rgba(37,99,235,0.10)]'
+                : 'hover:border-gray-300'
+            }`}
           >
             <button
               onClick={() => toggle(i)}
               className="w-full flex items-center justify-between p-6 text-left"
             >
-              <span className={`text-sm md:text-base font-bold transition-colors ${isOpen ? 'text-primary' : 'text-foreground hover:text-white'}`}>
+              <span className={`text-sm md:text-base font-bold transition-colors ${isOpen ? 'text-blue-600' : 'text-gray-900 hover:text-blue-600'}`}>
                 {item.question}
               </span>
-              <div className={`w-8 h-8 rounded-full border border-white/10 flex items-center justify-center shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180 bg-primary/20 text-primary' : 'bg-white/5 text-muted-foreground'}`}>
+              <div className={`w-8 h-8 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ${
+                isOpen
+                  ? 'rotate-180 bg-blue-50 border-blue-200 text-blue-600'
+                  : 'bg-gray-50 border-gray-200 text-gray-400'
+              }`}>
                 <ChevronDown className="w-4 h-4" />
               </div>
             </button>
-            <div 
-              className={`overflow-hidden transition-all duration-500 ease-in-out px-6 ${isOpen ? 'max-h-40 pb-6 opacity-100' : 'max-h-0 opacity-0'}`}
+            <div
+              className={`overflow-hidden transition-all duration-500 ease-in-out px-6 ${
+                isOpen ? 'max-h-48 pb-6 opacity-100' : 'max-h-0 opacity-0'
+              }`}
             >
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-sm text-gray-500 leading-relaxed">
                 {item.answer}
               </p>
             </div>

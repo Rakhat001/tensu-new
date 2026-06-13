@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:is(.dark *));
-
 @theme {
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
   
@@ -20,27 +18,37 @@
   --radius-sm: calc(var(--radius) - 4px);
 }
 
-:root, .dark {
-  --background: #09090b;
-  --foreground: #f8fafc;
-  --card: rgba(255, 255, 255, 0.05);
-  --card-foreground: #f8fafc;
-  --primary: #3b82f6;
-  --primary-foreground: #ffffff;
-  --muted: rgba(255, 255, 255, 0.08);
-  --muted-foreground: #94a3b8;
-  --border: rgba(255, 255, 255, 0.12);
-  --radius: 1.25rem;
-  
-  /* Glow colors */
-  --glow-primary: rgba(59, 130, 246, 0.40);
-  --glow-secondary: rgba(139, 92, 246, 0.35);
+:root {
+  /* === PALETTE: White / Blue / Violet / Black === */
+  --background: #FFFFFF;
+  --foreground: #0F0F1A;
+  --card: #FFFFFF;
+  --card-foreground: #0F0F1A;
+  --primary: #2563EB;
+  --primary-foreground: #FFFFFF;
+  --accent: #7C3AED;
+  --muted: #F5F5FF;
+  --muted-foreground: #6B7280;
+  --border: #E8E8F0;
+  --radius: 1rem;
+
+  /* Shadows */
+  --shadow-card: 0 1px 3px rgba(15,15,26,0.06), 0 4px 16px rgba(15,15,26,0.05);
+  --shadow-card-hover: 0 4px 12px rgba(15,15,26,0.08), 0 16px 40px rgba(37,99,235,0.10);
+  --shadow-button: 0 4px 14px rgba(37,99,235,0.35);
+
+  /* Glow */
+  --glow-primary: rgba(37, 99, 235, 0.12);
+  --glow-secondary: rgba(124, 58, 237, 0.10);
+
+  /* Section backgrounds */
+  --bg-section-alt: #F8F8FF;
+  --bg-hero: linear-gradient(160deg, #EEF2FF 0%, #F5F3FF 40%, #FFFFFF 100%);
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
+  * { @apply border-border; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
@@ -50,80 +58,182 @@
 }
 
 /* ============================================
-   TENSU BENTO BOX UTILITIES
+   DESIGN SYSTEM
    ============================================ */
 @layer utilities {
+
   .tensu-card {
-    background: var(--card);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    background: #FFFFFF;
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: var(--shadow-card);
+    transition: box-shadow 0.3s cubic-bezier(0.16,1,0.3,1),
+                transform 0.3s cubic-bezier(0.16,1,0.3,1),
+                border-color 0.3s ease;
   }
-
   .tensu-card:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 16px 40px var(--glow-primary);
+    box-shadow: var(--shadow-card-hover);
+    border-color: rgba(37,99,235,0.20);
   }
 
+  .tensu-section-alt {
+    background: var(--bg-section-alt);
+  }
+
+  /* Gradient text — blue to violet only */
   .text-gradient-blue-purple {
-    background: linear-gradient(135deg, #3B6EF6 0%, #7C3AED 100%);
+    background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
+  /* Badge */
   .tensu-badge-blue {
-    background: rgba(59, 110, 246, 0.15);
-    border-color: rgba(59, 110, 246, 0.30);
-    color: #93B4FF;
-    border: 1px solid transparent;
+    background: rgba(37,99,235,0.07);
+    border: 1px solid rgba(37,99,235,0.18);
+    color: #2563EB;
     display: inline-flex;
     align-items: center;
     gap: 0.375rem;
-    padding: 0.25rem 0.75rem;
+    padding: 0.3rem 0.85rem;
     border-radius: 9999px;
     font-size: 0.65rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
   }
+
+  /* Icon box */
+  .tensu-icon-box {
+    background: rgba(37,99,235,0.06);
+    border: 1px solid rgba(37,99,235,0.12);
+    border-radius: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .tensu-icon-box-violet {
+    background: rgba(124,58,237,0.06);
+    border: 1px solid rgba(124,58,237,0.12);
+  }
+  .group:hover .tensu-icon-box,
+  .group:hover .tensu-icon-box-violet {
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(37,99,235,0.14);
+  }
+
+  /* Hero bg */
+  .tensu-hero-bg {
+    background: linear-gradient(160deg, #EEF2FF 0%, #F5F3FF 50%, #FFFFFF 100%);
+  }
+
+  /* Dot pattern — blue/violet only */
+  .tensu-dot-pattern {
+    background-image: radial-gradient(circle, rgba(37,99,235,0.09) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Buttons */
+  .tensu-btn-primary {
+    background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+    color: white;
+    box-shadow: var(--shadow-button);
+    transition: all 0.25s ease;
+  }
+  .tensu-btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(37,99,235,0.45);
+    transform: translateY(-1px);
+  }
+
+  .tensu-btn-secondary {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    color: #0F0F1A;
+    box-shadow: var(--shadow-card);
+    transition: all 0.25s ease;
+  }
+  .tensu-btn-secondary:hover {
+    border-color: rgba(37,99,235,0.30);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  /* Stat pill */
+  .tensu-stat-pill {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    box-shadow: 0 2px 8px rgba(15,15,26,0.05);
+    padding: 0.45rem 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
 }
 
+/* ============================================
+   ANIMATIONS
+   ============================================ */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-9px); }
 }
-
 @keyframes float-delayed {
   0%, 100% { transform: translateY(-5px); }
-  50% { transform: translateY(5px); }
+  50% { transform: translateY(7px); }
 }
-
-@keyframes pulse-slow {
-  0%, 100% { opacity: 0.12; transform: scale(1); }
-  50% { opacity: 0.22; transform: scale(1.05); }
-}
-
 @keyframes slide-up {
-  0% { opacity: 0; transform: translateY(20px); }
+  0% { opacity: 0; transform: translateY(22px); }
   100% { opacity: 1; transform: translateY(0); }
 }
-
-.animate-float {
-  animation: float 7s ease-in-out infinite;
+@keyframes slide-in-right {
+  0% { opacity: 0; transform: translateX(24px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  70% { transform: scale(1.3); opacity: 0; }
+  100% { transform: scale(1.3); opacity: 0; }
+}
+@keyframes blob {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  33%  { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  66%  { border-radius: 50% 60% 30% 60% / 30% 40% 70% 50%; }
 }
 
-.animate-float-delayed {
-  animation: float-delayed 7s ease-in-out infinite;
-  animation-delay: -3.5s;
-}
+.animate-float          { animation: float 7s ease-in-out infinite; }
+.animate-float-delayed  { animation: float-delayed 6s ease-in-out infinite; animation-delay: -3s; }
+.animate-slide-up       { animation: slide-up 0.6s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-slide-in-right { animation: slide-in-right 0.6s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-fade-in        { animation: fade-in 0.5s ease both; }
+.animate-pulse-ring     { animation: pulse-ring 2s cubic-bezier(0.215,0.61,0.355,1) infinite; }
+.animate-blob           { animation: blob 8s ease-in-out infinite; }
 
-.animate-pulse-slow {
-  animation: pulse-slow 6s ease-in-out infinite;
-}
+.delay-100 { animation-delay: 0.10s; }
+.delay-200 { animation-delay: 0.20s; }
+.delay-300 { animation-delay: 0.30s; }
+.delay-400 { animation-delay: 0.40s; }
+.delay-500 { animation-delay: 0.50s; }
 
-.animate-slide-up {
-  animation: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #F5F5FF; }
+::-webkit-scrollbar-thumb { background: #C7C7E0; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #9999CC; }
+
+/* ============================================
+   MISC
+   ============================================ */
+.section-divider { border-top: 1px solid var(--border); }
+
+::selection {
+  background: rgba(37,99,235,0.12);
+  color: #1E40AF;
 }

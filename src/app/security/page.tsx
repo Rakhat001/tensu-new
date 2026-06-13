@@ -104,29 +104,29 @@ export default function SecurityPage() {
     }
   };
 
-  const t = translations[language];
+  const t = translations[language] || translations.ru;
 
   return (
-    <main className="min-h-screen bg-background relative selection:bg-emerald-500/30 selection:text-emerald-50">
+    <main className="min-h-screen bg-white relative selection:bg-blue-100 selection:text-blue-800">
       <Navigation />
 
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[600px] bg-emerald-500/10 blur-[150px] rounded-full pointer-events-none" />
-      <div className="absolute top-[40%] right-[-10%] w-[500px] h-[500px] bg-blue-600/10 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[600px] bg-blue-50/80 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-[40%] right-[-10%] w-[500px] h-[500px] bg-violet-50/80 blur-[120px] rounded-full pointer-events-none" />
 
       <section className="pt-32 lg:pt-48 pb-24 relative z-10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center mb-20 space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 backdrop-blur-md text-xs font-bold uppercase tracking-widest text-emerald-400 shadow-sm mx-auto">
-              <Shield className="w-4 h-4" />
+            <div className="tensu-badge-blue inline-flex items-center gap-2 mx-auto">
+              <Shield className="w-3.5 h-3.5" />
               {t.badge}
             </div>
             
-            <h1 className="text-5xl lg:text-7xl font-black text-foreground tracking-tight leading-[1.1]">
+            <h1 className="text-5xl lg:text-7xl font-black text-gray-900 tracking-tight leading-[1.05]">
               {t.title} <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-600">{t.titleGradient}</span>
+              <span className="text-gradient-blue-purple">{t.titleGradient}</span>
             </h1>
-            <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+            <p className="text-lg lg:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto">
               {t.subtitle}
             </p>
           </div>
@@ -135,15 +135,19 @@ export default function SecurityPage() {
             {t.features.map((feature, index) => (
               <div 
                 key={index}
-                className="tensu-card p-8 flex flex-col group transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/30 hover:shadow-[0_0_30px_rgba(16,185,129,0.1)]"
+                className="tensu-card p-8 flex flex-col group transition-all duration-300 hover:-translate-y-1.5 cursor-default"
               >
-                <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500/20 transition-colors shadow-inner">
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110 border ${
+                  index % 2 === 0 ? "bg-blue-50 border-blue-100 text-blue-600" : "bg-violet-50 border-violet-100 text-violet-600"
+                }`}>
                   <feature.icon className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-3 tracking-tight group-hover:text-white transition-colors">
+                <h3 className={`text-xl font-bold text-gray-900 mb-3 tracking-tight transition-colors ${
+                  index % 2 === 0 ? "group-hover:text-blue-600" : "group-hover:text-violet-600"
+                }`}>
                   {feature.title}
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm text-gray-500 leading-relaxed">
                   {feature.description}
                 </p>
               </div>
@@ -151,48 +155,52 @@ export default function SecurityPage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <div className="tensu-card p-8 lg:p-10 border border-white/10 hover:border-white/20 transition-colors">
-              <h2 className="text-2xl font-black text-white mb-8 tracking-tight flex items-center gap-3">
-                <Sparkles className="w-6 h-6 text-emerald-400" />
+            <div className="tensu-card p-8 lg:p-10 border border-gray-200">
+              <h2 className="text-2xl font-black text-gray-900 mb-8 tracking-tight flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center">
+                  <Sparkles className="w-5 h-5 text-blue-600" />
+                </div>
                 {t.dataColTitle}
               </h2>
               <ul className="space-y-5">
                 {t.dataCollection.map((item, index) => (
                   <li key={index} className="flex items-start gap-4">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-400 mt-0.5 shrink-0" />
-                    <span className="text-sm font-medium text-muted-foreground leading-relaxed">{item}</span>
+                    <CheckCircle2 className="w-5 h-5 text-blue-500 mt-0.5 shrink-0" />
+                    <span className="text-sm font-medium text-gray-600 leading-relaxed">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="tensu-card p-8 lg:p-10 border border-white/10 hover:border-white/20 transition-colors">
-              <h2 className="text-2xl font-black text-white mb-8 tracking-tight flex items-center gap-3">
-                <Server className="w-6 h-6 text-emerald-400" />
+            <div className="tensu-card p-8 lg:p-10 border border-gray-200">
+              <h2 className="text-2xl font-black text-gray-900 mb-8 tracking-tight flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-violet-50 border border-violet-100 flex items-center justify-center">
+                  <Server className="w-5 h-5 text-violet-600" />
+                </div>
                 {t.dataUsgTitle}
               </h2>
               <ul className="space-y-5">
                 {t.dataUsage.map((item, index) => (
                   <li key={index} className="flex items-start gap-4">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-400 mt-0.5 shrink-0" />
-                    <span className="text-sm font-medium text-muted-foreground leading-relaxed">{item}</span>
+                    <CheckCircle2 className="w-5 h-5 text-violet-500 mt-0.5 shrink-0" />
+                    <span className="text-sm font-medium text-gray-600 leading-relaxed">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
 
-          <div className="relative overflow-hidden rounded-[2rem] border border-amber-500/30 bg-amber-500/5 p-8 lg:p-12 mt-12">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 blur-[80px] rounded-full pointer-events-none" />
+          <div className="relative overflow-hidden rounded-[2rem] border border-blue-200 bg-blue-50 p-8 lg:p-12 mt-12 shadow-sm">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/40 blur-[80px] rounded-full pointer-events-none" />
             
             <div className="relative z-10 flex flex-col sm:flex-row gap-6 items-start">
-              <div className="w-14 h-14 rounded-2xl bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-500 shrink-0 shadow-[0_0_20px_rgba(245,158,11,0.2)]">
+              <div className="w-14 h-14 rounded-2xl bg-white border border-blue-100 flex items-center justify-center text-blue-600 shrink-0 shadow-sm">
                 <ShieldAlert className="w-7 h-7" />
               </div>
               <div>
-                <h2 className="text-2xl font-black text-white mb-4 tracking-tight">{t.noteTitle}</h2>
-                <p className="text-base text-muted-foreground leading-relaxed max-w-3xl">
-                  <strong className="text-white font-bold">Tensu</strong> {t.noteDesc1}
+                <h2 className="text-2xl font-black text-gray-900 mb-4 tracking-tight">{t.noteTitle}</h2>
+                <p className="text-base text-gray-600 leading-relaxed max-w-3xl">
+                  <strong className="text-gray-900 font-bold">Tensu</strong> {t.noteDesc1}
                 </p>
               </div>
             </div>

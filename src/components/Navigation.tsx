@@ -5,7 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "@/lib/LanguageContext";
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 
 export function Navigation() {
   const pathname = usePathname();
@@ -64,30 +64,37 @@ export function Navigation() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "py-2 bg-background/80 backdrop-blur-2xl border-b border-border shadow-[0_1px_0_var(--border)]"
-          : "py-4 bg-transparent"
+          ? "py-0 bg-white/95 backdrop-blur-xl border-b border-gray-100 shadow-sm"
+          : "py-2 bg-white/70 backdrop-blur-md"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 relative">
           
           {/* Logo */}
-          <Link href="/" className="flex items-center group relative z-10 transition-transform hover:scale-105">
-            <Image src="/tensu-logo.png" alt="Tensu" width={240} height={80} className="h-14 sm:h-16 w-auto object-contain brightness-0 invert" priority />
+          <Link href="/" className="flex items-center group relative z-10 transition-transform hover:scale-[1.02]">
+            <Image
+              src="/tensu-logo.png"
+              alt="Tensu"
+              width={220}
+              height={70}
+              className="h-12 sm:h-14 w-auto object-contain"
+              priority
+            />
           </Link>
 
-          {/* Desktop Navigation Pills */}
-          <div className="hidden lg:flex items-center gap-1 p-1.5 rounded-full border border-border bg-card/50 backdrop-blur-xl">
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center gap-1 bg-gray-50 border border-gray-200 rounded-full p-1 shadow-sm">
             {navItems.map((item) => {
               const isActive = pathname === item.path;
               return (
                 <Link
                   key={item.id}
                   href={item.path}
-                  className={`px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-widest transition-all duration-300 ${
+                  className={`px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-widest transition-all duration-250 ${
                     isActive
-                      ? "bg-white/10 text-white shadow-sm"
-                      : "text-muted-foreground hover:text-white hover:bg-white/5"
+                      ? "bg-white text-blue-600 shadow-sm border border-blue-100"
+                      : "text-gray-500 hover:text-gray-900 hover:bg-white/60"
                   }`}
                 >
                   {item.label}
@@ -97,17 +104,18 @@ export function Navigation() {
           </div>
 
           {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center gap-4 relative z-10">
+          <div className="hidden lg:flex items-center gap-3 relative z-10">
             {/* Language Switcher */}
-            <div className="flex items-center bg-white/5 border border-white/10 rounded-full p-1 backdrop-blur-sm">
+            <div className="flex items-center gap-0.5 bg-gray-100 border border-gray-200 rounded-full p-1">
+              <Globe className="w-3.5 h-3.5 text-gray-400 ml-1.5 mr-0.5" />
               {(['ru', 'en', 'kk'] as const).map((lang) => (
                 <button
                   key={lang}
                   onClick={() => setLanguage(lang)}
-                  className={`px-3 py-1.5 text-xs font-bold uppercase rounded-full transition-all ${
-                    language === lang 
-                      ? "bg-primary text-white shadow-md shadow-primary/20" 
-                      : "text-muted-foreground hover:text-white"
+                  className={`px-2.5 py-1 text-[10px] font-bold uppercase rounded-full transition-all ${
+                    language === lang
+                      ? "bg-white text-blue-600 shadow-sm border border-blue-100"
+                      : "text-gray-500 hover:text-gray-800"
                   }`}
                 >
                   {lang}
@@ -115,23 +123,25 @@ export function Navigation() {
               ))}
             </div>
 
-            <Link href="#demo" className="bg-primary hover:bg-[#1E3A8A] text-white rounded-full shadow-lg shadow-primary/20 transition-all duration-300 px-6 py-2.5 font-bold uppercase tracking-wider text-xs flex items-center justify-center">
+            <Link
+              href="#demo"
+              className="tensu-btn-primary inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full font-bold text-xs uppercase tracking-widest text-white"
+            >
               {t.demo}
             </Link>
           </div>
 
           {/* Mobile Actions */}
-          <div className="flex lg:hidden items-center relative z-10 gap-3">
-            {/* Mobile Lang Switcher */}
-            <div className="flex items-center bg-white/5 border border-white/10 rounded-full p-0.5 backdrop-blur-sm">
+          <div className="flex lg:hidden items-center relative z-10 gap-2">
+            <div className="flex items-center bg-gray-100 border border-gray-200 rounded-full p-0.5">
               {(['ru', 'en', 'kk'] as const).map((lang) => (
                 <button
                   key={lang}
                   onClick={() => setLanguage(lang)}
                   className={`px-2 py-1 text-[10px] font-bold uppercase rounded-full transition-all ${
-                    language === lang 
-                      ? "bg-primary text-white" 
-                      : "text-muted-foreground"
+                    language === lang
+                      ? "bg-white text-blue-600 shadow-sm"
+                      : "text-gray-500"
                   }`}
                 >
                   {lang}
@@ -141,7 +151,7 @@ export function Navigation() {
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-xl bg-card border border-border text-foreground hover:bg-white/5 transition-all"
+              className="p-2 rounded-xl bg-gray-100 border border-gray-200 text-gray-600 hover:bg-gray-200 transition-all"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -149,23 +159,23 @@ export function Navigation() {
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed inset-x-0 top-[4.5rem] bg-background/95 backdrop-blur-2xl border-b border-border shadow-2xl transition-all duration-300 overflow-hidden ${
+        className={`lg:hidden fixed inset-x-0 top-[4.5rem] bg-white/98 backdrop-blur-2xl border-b border-gray-100 shadow-xl transition-all duration-300 overflow-hidden ${
           isMobileMenuOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="p-4 space-y-4">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1">
             {navItems.map((item) => (
               <Link
                 key={item.id}
                 href={item.path}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`px-4 py-3 rounded-xl text-sm font-bold uppercase tracking-wider ${
+                className={`px-4 py-3 rounded-xl text-sm font-bold uppercase tracking-wider transition-all ${
                   pathname === item.path
-                    ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:bg-white/5 hover:text-white"
+                    ? "bg-blue-50 text-blue-600 border border-blue-100"
+                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                 }`}
               >
                 {item.label}
@@ -173,8 +183,12 @@ export function Navigation() {
             ))}
           </div>
 
-          <div className="pt-4 border-t border-border">
-            <Link href="#demo" onClick={() => setIsMobileMenuOpen(false)} className="w-full flex items-center justify-center bg-primary hover:bg-[#1E3A8A] text-white rounded-xl h-12 shadow-lg shadow-primary/20 font-bold uppercase tracking-wider text-sm">
+          <div className="pt-3 border-t border-gray-100">
+            <Link
+              href="#demo"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="w-full flex items-center justify-center tensu-btn-primary text-white rounded-xl h-12 font-bold uppercase tracking-wider text-sm"
+            >
               {t.demo}
             </Link>
           </div>

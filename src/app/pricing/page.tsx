@@ -185,47 +185,49 @@ export default function PricingPage() {
     }
   };
 
-  const t = translations[language];
+  const t = translations[language] || translations.ru;
 
   return (
-    <main className="min-h-screen bg-background relative selection:bg-primary/30 selection:text-primary-50">
+    <main className="min-h-screen bg-white relative selection:bg-blue-100 selection:text-blue-800">
       <Navigation />
 
-      <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-primary/20 blur-[150px] rounded-full pointer-events-none" />
-      <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-purple-600/20 blur-[150px] rounded-full pointer-events-none" />
+      {/* Hero background blobs */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-gradient-to-br from-blue-50/80 to-violet-50/80 blur-[120px] rounded-full pointer-events-none" />
 
       <section className="pt-32 lg:pt-48 pb-24 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-6">
-            <h1 className="text-5xl lg:text-7xl font-black text-foreground tracking-tight leading-[1.1]">
+            <h1 className="text-5xl lg:text-7xl font-black text-gray-900 tracking-tight leading-[1.05]">
               {t.title} <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-primary to-purple-500">{t.titleGradient}</span>
+              <span className="text-gradient-blue-purple">{t.titleGradient}</span>
             </h1>
-            <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+            <p className="text-lg lg:text-xl text-gray-500 leading-relaxed max-w-2xl mx-auto">
               {t.subtitle}
             </p>
 
-            <div className="inline-flex p-1.5 bg-white/5 border border-white/10 rounded-full backdrop-blur-md mt-6 relative">
+            {/* Billing cycle toggle */}
+            <div className="inline-flex p-1.5 bg-gray-50 border border-gray-200 rounded-full shadow-sm mt-6 relative">
               <button
                 onClick={() => setBillingCycle('club')}
-                className={`relative z-10 px-6 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 w-[180px] sm:w-[200px] ${
-                  billingCycle === 'club' ? 'text-white' : 'text-muted-foreground hover:text-white'
+                className={`relative z-10 px-6 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-colors duration-300 w-[180px] sm:w-[200px] ${
+                  billingCycle === 'club' ? 'text-white' : 'text-gray-500 hover:text-gray-900'
                 }`}
               >
                 {t.perClub}
               </button>
               <button
                 onClick={() => setBillingCycle('student')}
-                className={`relative z-10 px-6 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 w-[180px] sm:w-[200px] ${
-                  billingCycle === 'student' ? 'text-white' : 'text-muted-foreground hover:text-white'
+                className={`relative z-10 px-6 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider transition-colors duration-300 w-[180px] sm:w-[200px] ${
+                  billingCycle === 'student' ? 'text-white' : 'text-gray-500 hover:text-gray-900'
                 }`}
               >
                 {t.perStudent}
               </button>
               
+              {/* Animated slider background */}
               <div 
-                className="absolute top-1.5 bottom-1.5 w-[180px] sm:w-[200px] bg-gradient-to-r from-primary to-violet-600 rounded-full transition-transform duration-300 ease-in-out shadow-[0_0_20px_rgba(37,99,235,0.4)]"
+                className="absolute top-1.5 bottom-1.5 w-[180px] sm:w-[200px] bg-blue-600 rounded-full transition-transform duration-300 ease-in-out shadow-md shadow-blue-200"
                 style={{ transform: `translateX(${billingCycle === 'club' ? '0' : '100%'})` }}
               />
             </div>
@@ -237,20 +239,19 @@ export default function PricingPage() {
               return (
                 <div
                   key={index}
-                  className={`relative flex flex-col justify-between rounded-[2rem] p-8 lg:p-10 transition-all duration-500 animate-fade-in ${
+                  className={`relative flex flex-col justify-between rounded-[2.5rem] p-8 lg:p-10 transition-all duration-300 cursor-default ${
                     isPopular
-                      ? 'bg-[#0F1225] border-2 border-primary/50 shadow-[0_0_50px_rgba(37,99,235,0.15)] transform lg:-translate-y-4'
-                      : 'bg-white/5 border border-white/10 backdrop-blur-md hover:border-white/20 hover:-translate-y-2'
+                      ? 'bg-white border-2 border-blue-500 shadow-xl shadow-blue-100/50 transform lg:-translate-y-4'
+                      : 'bg-white border border-gray-200 hover:border-blue-300 hover:shadow-lg hover:-translate-y-2'
                   }`}
-                  style={{ animationDelay: `${index * 100}ms`, animationFillMode: 'both' }}
                 >
                   {isPopular && (
-                    <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent rounded-[2rem] pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-transparent rounded-[2.5rem] pointer-events-none" />
                   )}
 
                   {isPopular && (
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                      <div className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5 shadow-lg shadow-cyan-500/20">
+                      <div className="bg-blue-600 text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5 shadow-md shadow-blue-200">
                         <Sparkles className="w-3.5 h-3.5" />
                         {t.popularBadge}
                       </div>
@@ -259,24 +260,24 @@ export default function PricingPage() {
 
                   <div className="relative z-10 space-y-8 flex-1">
                     <div>
-                      <h3 className="text-2xl font-black text-white tracking-tight">{plan.name}</h3>
-                      <p className="text-sm text-muted-foreground mt-3 leading-relaxed">{plan.desc}</p>
+                      <h3 className="text-2xl font-black text-gray-900 tracking-tight">{plan.name}</h3>
+                      <p className="text-sm text-gray-500 mt-3 leading-relaxed">{plan.desc}</p>
                     </div>
 
-                    <div className="border-y border-white/10 py-6 flex items-baseline gap-1">
-                      <span className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
+                    <div className="border-y border-gray-100 py-6 flex items-baseline gap-1">
+                      <span className="text-4xl font-black text-gray-900">
                         {billingCycle === 'club' ? plan.priceClub : plan.priceStudent}
                       </span>
                       {plan.period && (
-                        <span className="text-sm font-bold text-muted-foreground uppercase tracking-wide ml-1">{plan.period}</span>
+                        <span className="text-sm font-bold text-gray-400 uppercase tracking-wide ml-1">{plan.period}</span>
                       )}
                     </div>
 
                     <ul className="space-y-4">
                       {plan.features.map((feature, idx) => (
                         <li key={idx} className="flex items-start gap-3">
-                          <CheckCircle2 className={`w-5 h-5 shrink-0 ${isPopular ? 'text-primary' : 'text-muted-foreground/50'}`} />
-                          <span className="text-sm font-medium text-muted-foreground leading-snug">{feature}</span>
+                          <CheckCircle2 className={`w-5 h-5 shrink-0 ${isPopular ? 'text-blue-500' : 'text-gray-300'}`} />
+                          <span className="text-sm font-medium text-gray-600 leading-snug">{feature}</span>
                         </li>
                       ))}
                     </ul>
@@ -287,8 +288,8 @@ export default function PricingPage() {
                       href="/contact"
                       className={`w-full h-14 rounded-2xl text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all ${
                         isPopular
-                          ? 'bg-primary hover:bg-primary/90 text-white shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)]'
-                          : 'bg-white/5 hover:bg-white/10 text-white border border-white/10'
+                          ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-200 hover:-translate-y-0.5'
+                          : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
                       }`}
                     >
                       {plan.priceClub === 'Индивидуально' || plan.priceClub === 'Custom' || plan.priceClub === 'Жеке есеп' ? t.contact : t.demo}
