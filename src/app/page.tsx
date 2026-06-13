@@ -5,7 +5,8 @@ import {
   ArrowRight, Users, Calendar, AlertTriangle, MessageCircle,
   BarChart3, CheckCircle, CreditCard, ChevronRight, Play,
   Star, Smartphone, Zap, Globe, Shield, TrendingUp, Rocket,
-  UserPlus, Wrench, HelpCircle, Sparkles, QrCode, Send
+  UserPlus, Wrench, HelpCircle, Sparkles, QrCode, Send,
+  Building2, Settings2, Wallet, Users2, User, Heart
 } from "lucide-react";
 import { DesktopMockup } from "@/components/DesktopMockup";
 import { MobileMockup } from "@/components/MobileMockup";
@@ -345,59 +346,292 @@ export default function Home() {
       {/* =============================================
           HOW IT WORKS
       ============================================= */}
-      <section className="relative py-20 lg:py-28 section-divider tensu-section-alt">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-5">
+      <section className="relative py-20 lg:py-28 bg-white overflow-hidden section-divider">
+        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[400px] bg-gradient-to-br from-blue-50 to-violet-50 blur-[100px] rounded-full pointer-events-none" />
+
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-20 space-y-5">
             <div className="tensu-badge-blue inline-flex justify-center">
               <Rocket className="w-3 h-3" />
               {t.howItWorks.badge}
             </div>
-            <h2 className="text-3xl lg:text-5xl font-black text-gray-900 tracking-tight">
+            <h2 className="text-4xl lg:text-5xl font-black text-gray-900 tracking-tight leading-[1.1]">
               {t.howItWorks.titlePart1}
               <span className="text-gradient-blue-purple"> {t.howItWorks.titleHighlight}</span>
             </h2>
-            <p className="text-gray-500">Запустите свой клуб и начните принимать учеников за 3 простых шага</p>
+            <p className="text-gray-500 text-lg">{t.howItWorks.subtitle}</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
-            {/* Connector line */}
-            <div className="hidden md:block absolute top-10 left-[18%] right-[18%] h-[2px] bg-gradient-to-r from-blue-200 via-violet-300 to-violet-200 rounded-full pointer-events-none" />
+          {/* Horizontally scrolling steps container */}
+          <div className="relative w-full overflow-x-auto pb-12 snap-x snap-mandatory no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
+            <div className="flex justify-between items-start min-w-[1200px] gap-6 relative px-4">
+              {/* Connector line */}
+              <div className="absolute top-8 left-[8%] right-[8%] h-[2px] border-t-2 border-dashed border-gray-200 pointer-events-none" />
 
-            {[
-              { number: '01', icon: UserPlus, violet: false, ...t.howItWorks.steps[0] },
-              { number: '02', icon: Wrench, violet: true, ...t.howItWorks.steps[1] },
-              { number: '03', icon: Rocket, violet: false, ...t.howItWorks.steps[2] },
-            ].map((step, i) => (
-              <div key={i} className="relative z-10 flex flex-col items-center text-center space-y-5 group">
-                <div className="relative">
-                  <div className="w-16 h-16 rounded-2xl bg-white border border-gray-200 flex items-center justify-center shadow-sm group-hover:border-blue-200 group-hover:shadow-md transition-all">
-                    <step.icon className={`w-7 h-7 ${step.violet ? 'text-violet-600' : 'text-blue-600'} group-hover:scale-110 transition-transform`} />
+              {[
+                { icon: Building2, ...t.howItWorks.steps[0] },
+                { icon: Settings2, ...t.howItWorks.steps[1] },
+                { icon: Send, ...t.howItWorks.steps[2] },
+                { icon: Wallet, ...t.howItWorks.steps[3] },
+                { icon: QrCode, ...t.howItWorks.steps[4] },
+                { icon: BarChart3, ...t.howItWorks.steps[5] },
+              ].map((step, i) => (
+                <div key={i} className="relative z-10 flex flex-col items-center text-center flex-1 snap-center group">
+                  <div className="w-6 h-6 rounded-full bg-blue-50 text-blue-600 text-[10px] font-black flex items-center justify-center mb-4 border border-blue-100 shadow-sm relative z-10">
+                    {i + 1}
                   </div>
-                  <div className="absolute inset-0 rounded-2xl border-2 border-blue-200 animate-pulse-ring opacity-0 group-hover:opacity-100" />
+                  
+                  <div className="w-16 h-16 rounded-2xl bg-white border border-gray-200 flex items-center justify-center shadow-sm text-blue-600 mb-6 group-hover:scale-110 group-hover:border-blue-300 group-hover:shadow-lg group-hover:shadow-blue-500/10 transition-all duration-300 relative z-10">
+                    <step.icon className="w-7 h-7" />
+                  </div>
+                  
+                  <h4 className="text-[15px] font-bold text-gray-900 mb-2">{step.title}</h4>
+                  <p className="text-xs text-gray-500 max-w-[180px] mx-auto leading-relaxed h-16">{step.description}</p>
+                  
+                  {/* Phone Mockup Placeholder */}
+                  <div className="mt-6 w-44 h-[320px] bg-white border-[6px] border-gray-900 rounded-[2rem] shadow-xl overflow-hidden relative transform group-hover:-translate-y-2 transition-transform duration-500 group-hover:shadow-2xl">
+                    <div className="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-4 bg-gray-900 rounded-b-xl z-20" />
+                    <div className="w-full h-full bg-white flex items-center justify-center relative">
+                      <div className="absolute inset-0 pt-8 flex flex-col">
+                        {i === 0 && (
+                          <div className="w-full h-full flex flex-col px-3 pt-2 pb-4">
+                            <h5 className="font-bold text-[13px] text-gray-900 leading-tight">Новый клуб</h5>
+                            <p className="text-[7px] text-gray-400 mb-3">Расскажите о вашем клубе</p>
+                            
+                            <div className="space-y-2 mb-auto">
+                              <div>
+                                <p className="text-[6px] text-gray-500 mb-0.5 ml-1">Название клуба</p>
+                                <div className="w-full h-7 bg-gray-50 border border-gray-100 rounded-lg flex items-center px-2">
+                                  <span className="text-[8px] text-gray-900 font-medium">Tensu BJJ</span>
+                                </div>
+                              </div>
+                              <div>
+                                <p className="text-[6px] text-gray-500 mb-0.5 ml-1">Вид спорта</p>
+                                <div className="w-full h-7 bg-gray-50 border border-gray-100 rounded-lg flex items-center justify-between px-2">
+                                  <span className="text-[8px] text-gray-900 font-medium truncate max-w-[80%]">Бразильское джиу-джи...</span>
+                                  <ChevronRight className="w-2 h-2 text-gray-400 rotate-90 shrink-0" />
+                                </div>
+                              </div>
+                              <div>
+                                <p className="text-[6px] text-gray-500 mb-0.5 ml-1">Город</p>
+                                <div className="w-full h-7 bg-gray-50 border border-gray-100 rounded-lg flex items-center px-2">
+                                  <span className="text-[8px] text-gray-900 font-medium">Алматы</span>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div className="w-full h-9 bg-blue-600 rounded-xl flex items-center justify-center mt-3 shadow-sm shadow-blue-500/20">
+                              <span className="text-[9px] text-white font-bold">Продолжить</span>
+                            </div>
+                          </div>
+                        )}
+                        {i === 1 && (
+                          <div className="w-full h-full flex flex-col px-3 pt-2 pb-4">
+                            <div className="flex items-center gap-1 mb-4">
+                              <ChevronRight className="w-3 h-3 text-gray-400 rotate-180" />
+                              <h5 className="font-bold text-[10px] text-gray-900">Настройка клуба</h5>
+                            </div>
+                            
+                            <div className="space-y-1.5 mb-auto">
+                              {[
+                                { icon: Building2, label: "Секции", sub: "3 секции" },
+                                { icon: Calendar, label: "График тренировок", sub: "Настроен" },
+                                { icon: Users, label: "Тренеры", sub: "4 тренера" },
+                                { icon: CreditCard, label: "Тарифы и абонементы", sub: "5 тарифов" },
+                              ].map((item, idx) => (
+                                <div key={idx} className="w-full p-1.5 bg-white border border-gray-100 shadow-sm rounded-xl flex items-center gap-2">
+                                  <div className="w-5 h-5 rounded-md bg-blue-50 flex items-center justify-center shrink-0">
+                                    <item.icon className="w-3 h-3 text-blue-600" />
+                                  </div>
+                                  <div className="flex-1 min-w-0">
+                                    <p className="text-[8px] font-bold text-gray-900 truncate leading-tight">{item.label}</p>
+                                    <p className="text-[6px] text-gray-500 truncate leading-tight">{item.sub}</p>
+                                  </div>
+                                  <ChevronRight className="w-3 h-3 text-gray-300 shrink-0" />
+                                </div>
+                              ))}
+                            </div>
+                            
+                            <div className="w-full h-9 bg-blue-600 rounded-xl flex items-center justify-center mt-3 shadow-sm shadow-blue-500/20">
+                              <span className="text-[9px] text-white font-bold">Сохранить</span>
+                            </div>
+                          </div>
+                        )}
+                        {i === 2 && (
+                          <div className="w-full h-full flex flex-col bg-white overflow-hidden relative">
+                            {/* TG Header */}
+                            <div className="w-full h-16 bg-[#E8F0FE] flex items-center px-3 gap-2 pt-2 relative z-0">
+                              <div className="w-7 h-7 rounded-full bg-blue-500 flex items-center justify-center shrink-0 text-white">
+                                <Send className="w-4 h-4 ml-0.5" />
+                              </div>
+                              <div>
+                                <p className="text-[9px] font-bold text-blue-900 leading-tight">Tensu BJJ Club</p>
+                                <p className="text-[7px] text-blue-500">бот</p>
+                              </div>
+                            </div>
+                            
+                            {/* App Content */}
+                            <div className="flex-1 bg-gray-50 rounded-t-2xl -mt-4 relative z-10 px-3 pt-4 pb-4 flex flex-col">
+                              <h5 className="font-black text-[12px] text-gray-900 leading-tight mb-1.5">Добро пожаловать<br/>в Tensu BJJ! 👋</h5>
+                              <p className="text-[7px] text-gray-500 leading-relaxed mb-4">Записывайтесь на тренировки, покупайте абонементы и следите за прогрессом.</p>
+                              
+                              <div className="space-y-1.5 mt-auto">
+                                {[
+                                  { icon: Calendar, label: "Расписание" },
+                                  { icon: CreditCard, label: "Абонементы" },
+                                  { icon: User, label: "Мои записи" },
+                                ].map((item, idx) => (
+                                  <div key={idx} className="w-full p-2 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center gap-2">
+                                    <item.icon className="w-3.5 h-3.5 text-gray-400" />
+                                    <p className="text-[8px] font-bold text-gray-800 flex-1">{item.label}</p>
+                                    <ChevronRight className="w-3 h-3 text-gray-300" />
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                        {i === 3 && (
+                          <div className="w-full h-full flex flex-col px-3 pt-6 pb-4 items-center bg-gray-50">
+                            {/* The Pass */}
+                            <div className="w-full h-44 bg-white rounded-2xl shadow-xl shadow-blue-900/5 flex flex-col overflow-hidden relative">
+                              {/* Top blue half */}
+                              <div className="w-full h-20 bg-gradient-to-br from-blue-500 to-blue-600 p-3 text-white flex flex-col relative overflow-hidden shrink-0">
+                                <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full blur-xl translate-x-1/2 -translate-y-1/2" />
+                                <div className="flex justify-between items-start">
+                                  <span className="font-black text-[10px] tracking-wider italic opacity-90">TENSU</span>
+                                  <span className="font-bold text-[7px] uppercase tracking-wider opacity-80">Tensu BJJ</span>
+                                </div>
+                                <div className="mt-auto flex justify-between items-end">
+                                  <div>
+                                    <p className="text-[5px] uppercase opacity-70 mb-0.5">Абонемент</p>
+                                    <p className="text-[11px] font-bold leading-none">8 занятий</p>
+                                  </div>
+                                  <div className="text-right">
+                                    <p className="text-[5px] uppercase opacity-70 mb-0.5">Действует до</p>
+                                    <p className="text-[7px] font-bold">10.04.2026</p>
+                                  </div>
+                                </div>
+                              </div>
+                              {/* Bottom white half */}
+                              <div className="flex-1 bg-white flex items-center justify-center p-2">
+                                <QrCode className="w-full h-full text-gray-900" />
+                              </div>
+                            </div>
+                            
+                            {/* Add to Apple Wallet button */}
+                            <div className="mt-auto w-[110px] h-8 bg-black rounded-lg flex items-center justify-center gap-1.5 shadow-lg shadow-black/20">
+                              <div className="flex -space-x-1.5">
+                                <div className="w-4 h-2.5 rounded-sm bg-red-400 rotate-12" />
+                                <div className="w-4 h-2.5 rounded-sm bg-green-400 -rotate-12 mix-blend-screen" />
+                                <div className="w-4 h-2.5 rounded-sm bg-blue-400 -rotate-6 mix-blend-screen" />
+                              </div>
+                              <div className="flex flex-col">
+                                <span className="text-[4px] text-white/70 uppercase leading-none">Добавлено в</span>
+                                <span className="text-[6px] font-bold text-white leading-none">Apple Wallet</span>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                        {i === 4 && (
+                          <div className="absolute inset-0 bg-[#111827] px-3 pt-10 pb-6 text-white flex flex-col">
+                            <div className="flex items-center gap-2 mb-8">
+                              <ChevronRight className="w-3 h-3 text-white/50 rotate-180" />
+                              <span className="text-[10px] font-medium">Сканирование</span>
+                            </div>
+                            
+                            <div className="w-full aspect-square relative flex items-center justify-center mt-2">
+                              {/* Scanning brackets */}
+                              <div className="absolute inset-0 border-2 border-green-500/30 rounded-2xl" />
+                              <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-green-500 rounded-tl-2xl" />
+                              <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-green-500 rounded-tr-2xl" />
+                              <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-green-500 rounded-bl-2xl" />
+                              <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-green-500 rounded-br-2xl" />
+                              
+                              {/* QR Box */}
+                              <div className="w-[85%] h-[85%] bg-white rounded-xl flex items-center justify-center relative overflow-hidden shadow-[0_0_30px_rgba(34,197,94,0.15)]">
+                                <QrCode className="w-20 h-20 text-gray-900" />
+                                <div className="absolute top-1/2 left-0 w-full h-[2px] bg-green-500 shadow-[0_0_10px_#22C55E]" />
+                              </div>
+                            </div>
+                            
+                            <div className="mt-auto text-center">
+                              <p className="text-[8px] text-white/60">Поднесите QR-код<br/>к сканеру</p>
+                            </div>
+                          </div>
+                        )}
+                        {i === 5 && (
+                          <div className="w-full h-full flex flex-col px-3 pt-4 pb-4">
+                            <h5 className="font-bold text-[13px] text-gray-900 mb-3">Аналитика</h5>
+                            
+                            <div className="w-full h-6 bg-white border border-gray-100 rounded-md flex items-center justify-between px-2 mb-3 shadow-sm shrink-0">
+                              <span className="text-[8px] text-gray-500">Сегодня</span>
+                              <ChevronRight className="w-2.5 h-2.5 text-gray-400 rotate-90" />
+                            </div>
+
+                            <div className="flex gap-2 mb-2 shrink-0">
+                              <div className="flex-1 bg-white border border-gray-100 rounded-xl p-2 shadow-sm flex flex-col">
+                                <span className="text-[7px] text-gray-500 font-medium mb-1">Посещения</span>
+                                <span className="text-[14px] font-black text-gray-900 leading-none">128</span>
+                                <span className="text-[6px] font-bold text-blue-500 bg-blue-50 w-max px-1 rounded-sm mt-1">+12%</span>
+                              </div>
+                              <div className="flex-1 bg-white border border-gray-100 rounded-xl p-2 shadow-sm flex flex-col">
+                                <span className="text-[7px] text-gray-500 font-medium mb-1">Записи</span>
+                                <span className="text-[14px] font-black text-gray-900 leading-none">42</span>
+                                <span className="text-[6px] font-bold text-green-500 bg-green-50 w-max px-1 rounded-sm mt-1">+8%</span>
+                              </div>
+                            </div>
+                            
+                            <div className="w-full flex-1 bg-white border border-gray-100 rounded-xl shadow-sm p-3 flex flex-col min-h-0 overflow-hidden">
+                              <div className="flex justify-between items-start mb-2">
+                                <span className="text-[7px] text-gray-500 font-medium">Выручка</span>
+                                <span className="text-[6px] font-bold text-green-500 bg-green-50 px-1 rounded-sm">+15%</span>
+                              </div>
+                              <span className="text-[14px] font-black text-gray-900 mb-auto">1 240 000 ₸</span>
+                              
+                              {/* Sparkline imitation */}
+                              <svg viewBox="0 0 100 30" className="w-full h-6 stroke-blue-500 fill-none overflow-visible shrink-0 mt-2">
+                                <path d="M0 25 L15 15 L30 20 L45 10 L60 15 L75 5 L100 10" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                                {/* Under glow */}
+                                <path d="M0 25 L15 15 L30 20 L45 10 L60 15 L75 5 L100 10 L100 30 L0 30 Z" fill="url(#sparkGradient)" stroke="none" />
+                                <defs>
+                                  <linearGradient id="sparkGradient" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stopColor="rgba(59, 130, 246, 0.2)" />
+                                    <stop offset="100%" stopColor="rgba(59, 130, 246, 0)" />
+                                  </linearGradient>
+                                </defs>
+                              </svg>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <div className="text-xs font-black text-blue-400 uppercase tracking-widest">{step.number}</div>
-                  <h4 className="text-lg font-bold text-gray-900">{step.title}</h4>
-                  <p className="text-sm text-gray-500 max-w-[220px] mx-auto leading-relaxed">{step.description}</p>
+              ))}
+            </div>
+          </div>
+
+          {/* Stats Banner */}
+          <div className="max-w-5xl mx-auto mt-8 bg-gray-50 border border-gray-100 rounded-[2rem] p-8 lg:p-10 flex flex-wrap justify-between items-center gap-8 shadow-sm">
+            {[
+              { icon: Users2, val: "50+", label: "клубов" },
+              { icon: User, val: "5 000+", label: "учеников" },
+              { icon: BarChart3, val: "100 000+", label: "посещений" },
+              { icon: Heart, val: "98%", label: "довольных учеников" },
+            ].map((stat, i) => (
+              <div key={i} className="flex items-center gap-5 group cursor-default">
+                <div className="w-14 h-14 rounded-2xl bg-white shadow-sm border border-gray-100 flex items-center justify-center text-blue-600 group-hover:scale-110 group-hover:shadow-md transition-all duration-300">
+                   <stat.icon className="w-6 h-6" />
+                </div>
+                <div>
+                  <div className="text-2xl font-black text-gray-900">{stat.val}</div>
+                  <div className="text-sm font-medium text-gray-500">{stat.label}</div>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Stats */}
-          <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { val: "50+", label: "клубов" },
-              { val: "5 000+", label: "учеников" },
-              { val: "100 000+", label: "посещений" },
-              { val: "98%", label: "довольных" },
-            ].map((s, i) => (
-              <div key={i} className="tensu-card p-5 text-center">
-                <p className="text-2xl font-black text-gradient-blue-purple">{s.val}</p>
-                <p className="text-[11px] text-gray-500 font-medium mt-1">{s.label}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 

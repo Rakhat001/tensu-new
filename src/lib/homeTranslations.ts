@@ -62,12 +62,16 @@ export const homeTranslations = {
     },
     howItWorks: {
       badge: "Как это работает",
-      titlePart1: "Три шага к ",
-      titleHighlight: "автоматизации",
+      titlePart1: "Запустите свой клуб за ",
+      titleHighlight: "6 простых шагов",
+      subtitle: "Запустите свой клуб и начните принимать учеников",
       steps: [
-        { title: 'Регистрация', description: 'Оставьте заявку на демо — подключим ваш клуб к платформе.' },
-        { title: 'Настройка системы', description: 'Создайте секции, добавьте тренеров, настройте тарифы и расписание.' },
-        { title: 'Уверенное развитие', description: 'Сотрудники в CRM, клиенты оплачивают и записываются онлайн.' },
+        { title: 'Регистрация клуба', description: 'Оставьте заявку и мы создадим ваш клуб в Tensu.' },
+        { title: 'Настройка клуба', description: 'Создайте секции, график тренировок, добавьте тренеров и тарифы.' },
+        { title: 'Telegram Mini App', description: 'Ваш клуб автоматически появляется в Telegram. Ученики находят его и подписываются.' },
+        { title: 'Wallet Pass', description: 'Ученики добавляют абонемент в Apple Wallet или Google Wallet.' },
+        { title: 'QR Check-in', description: 'Посещение подтверждается сканированием QR-кода на входе в зал.' },
+        { title: 'Управление и рост', description: 'Следите за посещаемостью, оплатами и развитием клуба в одном кабинете.' },
       ]
     },
     faq: {
@@ -144,12 +148,16 @@ export const homeTranslations = {
     },
     howItWorks: {
       badge: "How it works",
-      titlePart1: "Three steps to ",
-      titleHighlight: "automation",
+      titlePart1: "Launch your club in ",
+      titleHighlight: "6 simple steps",
+      subtitle: "Launch your club and start accepting students",
       steps: [
-        { title: 'Registration', description: 'Submit a demo request — we will connect your club to the platform.' },
-        { title: 'System Setup', description: 'Create sections, add coaches, configure tariffs and the schedule.' },
-        { title: 'Confident Growth', description: 'Staff uses the CRM, clients pay and book online.' },
+        { title: 'Club Registration', description: 'Submit a request and we will create your club in Tensu.' },
+        { title: 'Club Setup', description: 'Create sections, training schedules, add coaches and pricing.' },
+        { title: 'Telegram Mini App', description: 'Your club automatically appears in Telegram. Students find and subscribe.' },
+        { title: 'Wallet Pass', description: 'Students add their membership to Apple Wallet or Google Wallet.' },
+        { title: 'QR Check-in', description: 'Attendance is confirmed by scanning a QR code at the entrance.' },
+        { title: 'Management & Growth', description: 'Track attendance, payments, and club growth in one dashboard.' },
       ]
     },
     faq: {
@@ -226,12 +234,16 @@ export const homeTranslations = {
     },
     howItWorks: {
       badge: "Қалай жұмыс істейді",
-      titlePart1: "Автоматтандыруға ",
-      titleHighlight: "үш қадам",
+      titlePart1: "Клубыңызды ",
+      titleHighlight: "6 қадамда іске қосыңыз",
+      subtitle: "Клубыңызды іске қосып, оқушыларды қабылдай бастаңыз",
       steps: [
-        { title: 'Тіркеу', description: 'Демоға өтінім қалдырыңыз — біз сіздің клубыңызды платформаға қосамыз.' },
-        { title: 'Жүйені баптау', description: 'Секциялар жасаңыз, бапкерлерді қосыңыз, тарифтер мен кестені реттеңіз.' },
-        { title: 'Сенімді даму', description: 'Қызметкерлер CRM-де жұмыс істейді, клиенттер онлайн төлейді және жазылады.' },
+        { title: 'Клубты тіркеу', description: 'Өтінім қалдырыңыз, біз сіздің клубыңызды Tensu-да құрамыз.' },
+        { title: 'Клубты баптау', description: 'Секциялар, жаттығу кестесін құрыңыз, бапкерлер мен тарифтерді қосыңыз.' },
+        { title: 'Telegram Mini App', description: 'Сіздің клубыңыз Telegram-да автоматты түрде пайда болады. Оқушылар тауып жазылады.' },
+        { title: 'Wallet Pass', description: 'Оқушылар абонементті Apple немесе Google Wallet-ке қосады.' },
+        { title: 'QR Check-in', description: 'Қатысу залға кіре берісте QR-кодты сканерлеу арқылы расталады.' },
+        { title: 'Басқару және даму', description: 'Бір кабинетте қатысуды, төлемдерді және клубтың дамуын бақылаңыз.' },
       ]
     },
     faq: {

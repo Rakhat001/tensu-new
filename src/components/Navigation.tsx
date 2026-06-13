@@ -68,11 +68,11 @@ export function Navigation() {
           : "py-2 bg-white/70 backdrop-blur-md"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 relative">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20 relative">
           
           {/* Logo */}
-          <Link href="/" className="flex items-center group relative z-10 transition-transform hover:scale-[1.02]">
+          <Link href="/" className="flex items-center group relative z-10 transition-all hover:opacity-80">
             <Image
               src="/tensu-logo.png"
               alt="Tensu"
@@ -84,17 +84,17 @@ export function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1 bg-gray-50 border border-gray-200 rounded-full p-1 shadow-sm">
+          <div className="hidden lg:flex items-center gap-7 bg-white border border-gray-200/80 rounded-full px-8 py-3.5 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
             {navItems.map((item) => {
               const isActive = pathname === item.path;
               return (
                 <Link
                   key={item.id}
                   href={item.path}
-                  className={`px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-widest transition-all duration-250 ${
+                  className={`text-[10px] font-extrabold uppercase tracking-[0.15em] transition-colors ${
                     isActive
-                      ? "bg-white text-blue-600 shadow-sm border border-blue-100"
-                      : "text-gray-500 hover:text-gray-900 hover:bg-white/60"
+                      ? "text-blue-600"
+                      : "text-gray-500 hover:text-gray-900"
                   }`}
                 >
                   {item.label}
@@ -104,17 +104,17 @@ export function Navigation() {
           </div>
 
           {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center gap-3 relative z-10">
+          <div className="hidden lg:flex items-center gap-4 relative z-10">
             {/* Language Switcher */}
-            <div className="flex items-center gap-0.5 bg-gray-100 border border-gray-200 rounded-full p-1">
-              <Globe className="w-3.5 h-3.5 text-gray-400 ml-1.5 mr-0.5" />
+            <div className="flex items-center gap-1 bg-gray-50/80 border border-gray-200/80 rounded-full p-1.5 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+              <Globe className="w-4 h-4 text-gray-400 ml-1.5 mr-0.5" />
               {(['ru', 'en', 'kk'] as const).map((lang) => (
                 <button
                   key={lang}
                   onClick={() => setLanguage(lang)}
-                  className={`px-2.5 py-1 text-[10px] font-bold uppercase rounded-full transition-all ${
+                  className={`px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-full transition-all ${
                     language === lang
-                      ? "bg-white text-blue-600 shadow-sm border border-blue-100"
+                      ? "bg-white text-blue-600 shadow-sm border border-gray-100"
                       : "text-gray-500 hover:text-gray-800"
                   }`}
                 >
@@ -125,7 +125,7 @@ export function Navigation() {
 
             <Link
               href="#demo"
-              className="tensu-btn-primary inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full font-bold text-xs uppercase tracking-widest text-white"
+              className="bg-[#3B5BDB] hover:bg-blue-700 shadow-lg shadow-blue-500/25 transition-all inline-flex items-center justify-center px-7 py-3.5 rounded-full font-bold text-[10px] uppercase tracking-[0.15em] text-white"
             >
               {t.demo}
             </Link>
